@@ -1,63 +1,488 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Penn Power</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 600px;
-      width: 90%;
-    }
-    h1 {
-      margin-top: 0;
-      color: #0056b3;
-      font-size: 32px;
-    }
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #555;
-    }
-    a.admin-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #0056b3;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-    a.admin-btn:hover {
-      background-color: #003d80;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>പെൺ Power Community | Empowering Women in Kannur</title>
+
+    <!-- Google Site Verification Tag for Search Indexing -->
+    <meta name="google-site-verification" content="Jo-O99DywTsJpooXjKlaHSQhT1-71ax286kZSrLHJlE" />
+
+    <!-- Search Engine & Social Media Sharing Meta Tags (Open Graph) -->
+    <meta name="title" content="പെൺ Power Community | Kannur, Kerala">
+    <meta name="description" content="Penn Power — Together We Support, Together We Grow. A vibrant community empowering 600+ women entrepreneurs and leaders across Kannur & Kerala.">
+    
+    <!-- Open Graph / WhatsApp Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://penn-powertest.netlify.app/">
+    <meta property="og:title" content="പെൺ Power Community | Women Empowering Women">
+    <meta property="og:description" content="Together We Support, Together We Grow. Join 600+ members in Kannur for networking, skill sharing, and business growth.">
+    <meta property="og:image" content="pennpower.png.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="പെൺ Power Community | Kannur">
+    <meta property="twitter:description" content="Together We Support, Together We Grow. Join 600+ members in Kannur.">
+    <meta property="twitter:image" content="pennpower.png.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                        },
+                        accent: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        ml: ['Anek Malayalam', 'sans-serif'],
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 2.5s infinite linear',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .gradient-light-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 40%, #f3e8ff 80%, #ffffff 100%);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(14px);
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: all 0.5s;
+        }
+        .shimmer-btn:hover::after {
+            left: 100%;
+            transition: all 0.75s ease-in-out;
+        }
+        .instagram-media {
+            margin: 0 auto !important;
+            border-radius: 1.25rem !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-slate-800 bg-white antialiased selection:bg-brand-500 selection:text-white">
 
-  <div class="container">
-    <h1>Penn Power</h1>
-    <p>Welcome to Penn Power.</p>
-    <a href="/adminzeeba/" class="admin-btn">Access Admin Dashboard</a>
-  </div>
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 glass-header border-b border-pink-100/70 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="pennpower.png.png" 
+                     onerror="this.onerror=null; this.src='Pennpower.png'; if(!this.complete) this.src='pennpower.png';" 
+                     alt="Penn Power Logo" 
+                     class="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
+                <div class="flex flex-col">
+                    <span class="font-ml text-2xl font-extrabold bg-gradient-to-r from-brand-700 via-pink-600 to-accent-600 bg-clip-text text-transparent leading-none">പെൺ Power</span>
+                    <span class="text-[11px] font-bold tracking-wider text-rose-500 uppercase mt-0.5">Community • Kannur</span>
+                </div>
+            </a>
 
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-slate-600 text-sm">
+                <a href="#about" class="hover:text-brand-600 transition-colors">About Us</a>
+                <a href="#leadership" class="hover:text-brand-600 transition-colors">Leadership</a>
+                <a href="#highlights" class="hover:text-brand-600 transition-colors">Highlights</a>
+                <a href="#join" class="hover:text-brand-600 transition-colors">Join Us</a>
+            </nav>
+
+            <!-- Pre-filled General Connect CTA -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="https://wa.me/919995352227?text=Hi!%20I%20would%20like%20to%20connect%20with%20Penn%20Power%20Community." 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="shimmer-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-md shadow-emerald-500/20 hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Connect</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden p-2 rounded-xl text-slate-600 hover:text-brand-600 hover:bg-pink-50 transition-colors" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-pink-100 bg-white/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">About Us</a>
+            <a href="#leadership" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Leadership</a>
+            <a href="#highlights" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Highlights</a>
+            <a href="#join" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Join Us</a>
+            <a href="https://wa.me/919995352227?text=Hi!%20I%20would%20like%20to%20connect%20with%20Penn%20Power%20Community." 
+               target="_blank" rel="noopener noreferrer" 
+               class="flex items-center justify-center gap-2 w-full mt-2 px-5 py-3 rounded-xl bg-emerald-500 text-white font-bold text-center shadow-md">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Connect via WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden gradient-light-bg py-16 lg:py-24 border-b border-pink-100/60">
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-pink-200/40 rounded-full filter blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-20 w-96 h-96 bg-purple-200/40 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+                
+                <!-- Main Logo -->
+                <div class="flex justify-center mb-6">
+                    <img src="pennpower.png.png" 
+                         onerror="this.onerror=null; this.src='Pennpower.png'; if(!this.complete) this.src='pennpower.png';" 
+                         alt="Penn Power Logo Large" 
+                         class="h-36 sm:h-48 w-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
+                </div>
+
+                <!-- Pulsing Motto Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-pink-200 shadow-sm text-brand-700 text-xs sm:text-sm font-bold mb-6 hover:shadow-md transition-shadow">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+                    <span>Together We Support, Together We Grow</span>
+                </div>
+
+                <!-- Hero Title -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                    <span class="font-ml bg-gradient-to-r from-brand-600 via-pink-600 to-accent-600 bg-clip-text text-transparent">പെൺ Power</span>
+                    <span class="block text-2xl sm:text-3xl font-bold text-slate-700 mt-1">Community • Kannur</span>
+                </h1>
+
+                <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8 font-medium italic">
+                    "Penn Power is a community where women share, support, promote, help, and grow together. Members support each other through business promotions, status sharing, guidance, and a helpful community network."
+                </p>
+
+                <!-- Hero Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://wa.me/919995352227?text=Hi!%20I%20would%20like%20to%20join%20Penn%20Power%20Community%20as%20an%20annual%20member%20for%20%E2%82%B9250." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="shimmer-btn w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 via-pink-600 to-brand-700 hover:from-brand-700 hover:to-pink-800 text-white font-extrabold text-base shadow-lg shadow-brand-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all text-center">
+                        Join for ₹250 / Year
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-base border border-slate-200 shadow-sm hover:shadow-md transition-all text-center">
+                        Read Community Details
+                    </a>
+                </div>
+
+                <!-- Member Count Badge -->
+                <div class="mt-10 inline-flex items-center gap-6 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-pink-100 shadow-sm hover:border-pink-300 transition-colors">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-users text-brand-600 text-lg"></i>
+                        <span class="font-extrabold text-slate-800">600+ Active Members</span>
+                    </div>
+                    <div class="h-4 w-px bg-slate-200"></div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-brand-600 text-lg"></i>
+                        <span class="font-extrabold text-slate-800">Kannur, Kerala</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Leadership Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6" data-aos="fade-right">
+                    <div class="inline-block px-3.5 py-1 rounded-lg bg-pink-100 text-brand-700 text-xs font-extrabold uppercase tracking-wider">
+                        Our Movement & Core Values
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-snug">
+                        Fostering Independence & Sisterhood Across Kerala
+                    </h2>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        <strong>പെൺ Power Community</strong> is built on mutual aid, collective strength, and social uplifting. From Kannur to districts across Kerala, we support women entrepreneurs, homemakers, and professionals through business promotions, networking, status sharing, and guidance.
+                    </p>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        There is <strong>no discrimination</strong> based on age, caste, religion, or background. Every woman is warmly welcomed to grow with us.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-2xl bg-pink-50/50 border border-pink-100 hover:border-pink-300 transition-colors">
+                            <i class="fa-solid fa-heart-pulse text-brand-600 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-slate-900">Empowerment</h3>
+                            <p class="text-xs text-slate-600 mt-1">Gaining confidence, skill support, and financial independence.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-purple-50/50 border border-purple-100 hover:border-purple-300 transition-colors">
+                            <i class="fa-solid fa-hands-holding-circle text-accent-600 text-2xl mb-2"></i>
+                            <h3 class="font-bold text-slate-900">600+ Network</h3>
+                            <p class="text-xs text-slate-600 mt-1">Promote your business and connect with supportive members.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="leadership" class="lg:col-span-6" data-aos="fade-left">
+                    <div class="p-8 rounded-3xl bg-slate-900 text-white shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-500/20 rounded-full filter blur-2xl"></div>
+                        
+                        <h3 class="text-2xl font-bold text-pink-400 mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-amber-400"></i>
+                            Community Leadership
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/15 transition-all">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-pink-500 flex items-center justify-center font-bold text-white text-xl shadow-md">
+                                    Z
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-bold text-pink-300 uppercase tracking-wider block">Founder</span>
+                                    <h4 class="text-xl font-bold text-white">Zeeba Ashir</h4>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                                    <span class="text-[11px] font-bold text-pink-300 uppercase tracking-wider block">Secretary</span>
+                                    <h5 class="text-lg font-bold text-white mt-1">Mehseena Salim</h5>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                                    <span class="text-[11px] font-bold text-pink-300 uppercase tracking-wider block">Joint Secretary</span>
+                                    <h5 class="text-lg font-bold text-white mt-1">Shabana Niyas</h5>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-white/10">
+                                <div class="flex items-center justify-between mb-3">
+                                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Official Support Partners</p>
+                                    <a href="https://wa.me/919995352227?text=Hi!%20I%20have%20a%20question%20regarding%20sponsorship%20or%20partnering%20with%20Penn%20Power%20Community." 
+                                       target="_blank" rel="noopener noreferrer" 
+                                       class="text-xs text-pink-400 hover:text-pink-300 font-semibold underline">
+                                        Partner With Us?
+                                    </a>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <span class="px-3.5 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-pink-200 border border-white/5">
+                                        Nikshan Electronics
+                                    </span>
+                                    <span class="px-3.5 py-1.5 rounded-xl bg-white/10 text-xs font-bold text-amber-200 border border-white/5">
+                                        Malabar Gold and Diamonds
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="py-20 bg-slate-50 border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+                <div class="inline-block px-3.5 py-1 rounded-lg bg-pink-100 text-brand-700 text-xs font-extrabold uppercase tracking-wider mb-2">
+                    Social Highlights
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    Community Reels & Gatherings
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Watch our recent meets, logo launch events, and community updates directly below.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+
+                <!-- 1. FEATURED REEL -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DZmWXvlM0lH/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/reel/DZmWXvlM0lH/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+                <!-- 2. REEL -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="150">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DZjew7osF0R/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/reel/DZjew7osF0R/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+                <!-- 3. REEL -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DaBGXAnymCK/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/reel/DaBGXAnymCK/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+                <!-- 4. POST -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="250">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DaV1Zi-y3Pp/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/p/DaV1Zi-y3Pp/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+                <!-- 5. POST -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DdwzDzpSFug/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/p/DdwzDzpSFug/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+                <!-- 6. REEL -->
+                <div class="w-full max-w-[350px] bg-white p-3 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="350">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/Ddyyuylyw_Q/" data-instgrm-version="14" style="width:100%;">
+                        <a href="https://www.instagram.com/reel/Ddyyuylyw_Q/">View post on Instagram</a>
+                    </blockquote>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Call To Action (With Logo) -->
+    <section id="join" class="py-20 bg-gradient-to-br from-brand-700 via-pink-700 to-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center" data-aos="fade-up">
+            
+            <!-- Logo inside Membership Slide -->
+            <div class="flex justify-center mb-6">
+                <img src="pennpower.png.png" 
+                     onerror="this.onerror=null; this.src='Pennpower.png'; if(!this.complete) this.src='pennpower.png';" 
+                     alt="Penn Power Logo Join Section" 
+                     class="h-28 sm:h-36 w-auto object-contain drop-shadow-lg">
+            </div>
+
+            <h2 class="text-3xl sm:text-5xl font-extrabold mb-4 tracking-tight">
+                Become a Member of <span class="font-ml text-pink-200">പെൺ Power</span>
+            </h2>
+            <p class="text-base sm:text-lg text-pink-100 mb-8 max-w-xl mx-auto">
+                Join 600+ women today. Gain access to our official WhatsApp group, business promotions, networking meets, and community support.
+            </p>
+
+            <div class="inline-block p-8 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 mb-8 max-w-md w-full shadow-2xl">
+                <div class="text-xs font-bold text-pink-200 uppercase tracking-widest mb-1">Annual Membership</div>
+                <div class="text-4xl font-extrabold text-white mb-5">₹250 <span class="text-sm font-normal text-slate-300">/ Year</span></div>
+                
+                <ul class="text-left text-xs sm:text-sm text-pink-50 space-y-3 mb-8 font-medium">
+                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 text-base"></i> WhatsApp community access & networking</li>
+                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 text-base"></i> Business & status promotion sharing</li>
+                    <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 text-base"></i> Event invites & member meetups</li>
+                </ul>
+
+                <a href="https://wa.me/919995352227?text=Hi!%20I%20would%20like%20to%20join%20Penn%20Power%20Community%20as%20an%20annual%20member%20for%20%E2%82%B9250." 
+                   target="_blank" rel="noopener noreferrer" 
+                   class="shimmer-btn block w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 font-bold text-white shadow-lg transition-all text-center">
+                    <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Join Now via WhatsApp
+                </a>
+            </div>
+
+            <p class="text-slate-300 text-xs">
+                Questions or inquiries? Call us directly at <a href="tel:9995352227" class="underline hover:text-white font-bold">9995352227</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer with Larger Logo & Updated Legal Wording -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Left: Larger Footer Logo & Title -->
+            <div class="flex items-center gap-4">
+                <img src="pennpower.png.png" 
+                     onerror="this.onerror=null; this.src='Pennpower.png'; if(!this.complete) this.src='pennpower.png';" 
+                     alt="Penn Power Footer Logo" 
+                     class="h-16 sm:h-20 w-auto object-contain">
+                <span class="text-white font-bold font-ml text-lg">പെൺ Power Community</span>
+            </div>
+
+            <!-- Middle: Legal Statement & Credits -->
+            <div class="text-center">
+                <p class="text-xs text-slate-300 font-medium">
+                    Penn Power Community, Kannur • Trademark & Rights Reserved (Pending)
+                </p>
+                <p class="text-xs text-slate-300 font-medium mt-1.5">
+                    Made with <span class="text-rose-500">❤️</span> by <strong class="text-white font-bold">Sultan Niyaz</strong>
+                </p>
+            </div>
+
+            <!-- Right: Social Links -->
+            <div class="flex items-center gap-4 text-sm">
+                <a href="https://wa.me/919995352227?text=Hi!%20I%20would%20like%20to%20connect%20with%20Penn%20Power%20Community." 
+                   target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/pennpower__" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition-colors">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Async Instagram Script -->
+    <script async src="https://www.instagram.com/embed.js"></script>
+    
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Mobile menu toggle logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Ensure Instagram Embeds process smoothly after load
+        window.addEventListener('load', function() {
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        });
+    </script>
 </body>
 </html>
