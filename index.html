@@ -129,6 +129,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 font-semibold text-slate-600 text-sm">
                 <a href="#about" class="hover:text-brand-600 transition-colors">About Us</a>
+                <a href="#products" class="hover:text-brand-600 transition-colors">Products</a>
                 <a href="#leadership" class="hover:text-brand-600 transition-colors">Leadership</a>
                 <a href="#highlights" class="hover:text-brand-600 transition-colors">Highlights</a>
                 <a href="#join" class="hover:text-brand-600 transition-colors">Join Us</a>
@@ -153,6 +154,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobileMenu" class="hidden md:hidden border-t border-pink-100 bg-white/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3">
             <a href="#about" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">About Us</a>
+            <a href="#products" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Products</a>
             <a href="#leadership" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Leadership</a>
             <a href="#highlights" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Highlights</a>
             <a href="#join" class="block px-4 py-2.5 rounded-xl font-semibold text-slate-700 hover:bg-pink-50 hover:text-brand-600">Join Us</a>
@@ -312,6 +314,31 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase Section (Automatically Pulls from GitHub) -->
+    <section id="products" class="py-20 bg-pink-50/40 border-t border-pink-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                <div class="inline-block px-3.5 py-1 rounded-lg bg-pink-100 text-brand-700 text-xs font-extrabold uppercase tracking-wider mb-2">
+                    Member Showcase
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    Featured Member Products
+                </h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Explore products made and shared by local entrepreneurs across our Penn Power network.
+                </p>
+            </div>
+
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products dynamically fetch from content/products directory in GitHub -->
+                <div class="col-span-full text-center text-slate-500 py-12">
+                    <i class="fa-solid fa-spinner animate-spin text-2xl text-brand-600 mb-2"></i>
+                    <p class="text-sm font-semibold">Loading community products...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -483,6 +510,52 @@
                 window.instgrm.Embeds.process();
             }
         });
+
+        // Fetch products automatically from content/products directory in GitHub
+        async function fetchCommunityProducts() {
+            const grid = document.getElementById('productGrid');
+            try {
+                const res = await fetch('https://api.github.com/repos/Sultan782/penn-powertest/contents/content/products');
+                if (!res.ok) throw new Error('No products found');
+                const files = await res.json();
+                
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+                if (mdFiles.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full text-center text-slate-500 py-6">No products available yet. Check back soon!</div>';
+                    return;
+                }
+
+                grid.innerHTML = '';
+                for (const file of mdFiles) {
+                    const contentRes = await fetch(file.download_url);
+                    const rawText = await contentRes.text();
+
+                    // Parse frontmatter metadata
+                    const titleMatch = rawText.match(/title:\s*["']?(.*?)["']?$/m);
+                    const priceMatch = rawText.match(/price:\s*["']?(.*?)["']?$/m);
+                    const title = titleMatch ? titleMatch[1] : file.name.replace('.md', '');
+                    const price = priceMatch ? priceMatch[1] : '';
+
+                    grid.innerHTML += `
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-pink-100 hover:shadow-md transition-all flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-2">${title}</h3>
+                                ${price ? `<p class="text-brand-600 font-extrabold text-lg mb-4">₹${price}</p>` : ''}
+                            </div>
+                            <a href="https://wa.me/919995352227?text=Hi!%20I'm%20interested%20in%20${encodeURIComponent(title)}." 
+                               target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-sm transition-colors mt-4">
+                                <i class="fa-brands fa-whatsapp"></i> Inquire via WhatsApp
+                            </a>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                grid.innerHTML = '<div class="col-span-full text-center text-slate-500 py-6">Products will appear here once added in the admin dashboard.</div>';
+            }
+        }
+
+        fetchCommunityProducts();
     </script>
 </body>
 </html>
