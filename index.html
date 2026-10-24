@@ -3,345 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Penn Power Marketplace</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <title>Penn Power</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+    }
+    h1 {
+      margin-top: 0;
+      color: #0056b3;
+      font-size: 32px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #555;
+    }
+    a.admin-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #0056b3;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    a.admin-btn:hover {
+      background-color: #003d80;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body>
 
-  <!-- Sticky Header -->
-  <header class="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <!-- Brand Logo / Title -->
-      <a href="#" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-md group-hover:bg-amber-400 transition-colors">
-          P
-        </div>
-        <div>
-          <span class="text-lg font-bold tracking-tight block leading-tight">Penn Power</span>
-          <span class="text-xs text-amber-400 font-medium uppercase tracking-wider block">Marketplace</span>
-        </div>
-      </a>
-
-      <!-- Header Quick Actions -->
-      <div class="flex items-center space-x-3">
-        <a href="/adminzeeba/" class="text-slate-400 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center space-x-1.5 border border-slate-700">
-          <i class="fa-solid fa-user-lock"></i>
-          <span>Admin</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero & Filter Bar -->
-  <section class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-white pt-8 pb-12 px-4 sm:px-6 lg:px-8 shadow-inner">
-    <div class="max-w-4xl mx-auto text-center space-y-4 mb-8">
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-        Discover & Trade Local Equipment & Power Goods
-      </h1>
-      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-        Browse authentic products directly from sellers. Connect instantly via WhatsApp to inquire or place orders.
-      </p>
-    </div>
-
-    <!-- Search & Filter Controls -->
-    <div class="max-w-4xl mx-auto bg-white rounded-2xl p-4 shadow-xl text-slate-800 border border-slate-200">
-      <div class="flex flex-col sm:flex-row gap-3">
-        <!-- Search Input -->
-        <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-          <input 
-            type="text" 
-            id="searchInput" 
-            placeholder="Search products by title or seller name..." 
-            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm transition"
-            oninput="handleFilter()"
-          />
-        </div>
-
-        <!-- Category Dropdown -->
-        <div class="w-full sm:w-48">
-          <select 
-            id="categorySelect" 
-            class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm transition"
-            onchange="handleFilter()"
-          >
-            <option value="ALL">All Categories</option>
-            <option value="Generators">Generators</option>
-            <option value="Electrical Tools">Electrical Tools</option>
-            <option value="Heavy Equipment">Heavy Equipment</option>
-            <option value="Spare Parts">Spare Parts</option>
-            <option value="Services">Services</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Catalog Container -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-    <!-- Header info bar -->
-    <div class="flex items-center justify-between mb-6 pb-2 border-b border-slate-200">
-      <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-        <span>Available Items</span>
-        <span id="productCount" class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 rounded-full">0</span>
-      </h2>
-    </div>
-
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <!-- Loading Skeleton State -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-4 animate-pulse space-y-3">
-        <div class="w-full h-48 bg-slate-200 rounded-xl"></div>
-        <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-        <div class="h-4 bg-slate-200 rounded w-1/2"></div>
-        <div class="h-10 bg-slate-200 rounded-xl pt-2"></div>
-      </div>
-    </div>
-
-    <!-- Empty State -->
-    <div id="emptyState" class="hidden text-center py-16 px-4 bg-white rounded-2xl border border-slate-200 shadow-sm my-6">
-      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-        <i class="fa-solid fa-box-open"></i>
-      </div>
-      <h3 class="text-lg font-bold text-slate-800 mb-1">No Products Found</h3>
-      <p class="text-slate-500 text-sm max-w-sm mx-auto mb-4">We couldn't find any listings matching your query. Try clearing filters or searching for something else.</p>
-      <button onclick="resetFilters()" class="inline-flex items-center space-x-2 text-sm text-amber-600 font-semibold hover:text-amber-700">
-        <i class="fa-solid fa-rotate-right"></i>
-        <span>Reset Search & Filters</span>
-      </button>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <p class="font-medium text-slate-300">&copy; 2026 Penn Power Marketplace. All rights reserved.</p>
-      </div>
-      <div class="flex items-center space-x-4 text-xs">
-        <a href="/adminzeeba/" class="hover:text-amber-400 transition-colors">Seller Dashboard</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JavaScript App Engine -->
-  <script>
-    // Sample fallback items to display if markdown folder fetch is empty initially
-    const SAMPLE_PRODUCTS = [
-      {
-        id: "sample-1",
-        title: "Diesel Generator 50kVA - Industrial Grade",
-        price: "$4,800",
-        category: "Generators",
-        sellerName: "Zeeba Power Supplies",
-        whatsapp: "15551234567",
-        description: "Heavy-duty diesel generator with soundproof canopy and automatic start panel.",
-        image: "https://placehold.co/600x400/1e293b/f59e0b?text=Generator+50kVA"
-      },
-      {
-        id: "sample-2",
-        title: "Portable Welding Inverter Kit",
-        price: "$350",
-        category: "Electrical Tools",
-        sellerName: "Penn Tools Co.",
-        whatsapp: "15551234567",
-        description: "Lightweight 200A arc welding machine complete with cables and protective mask.",
-        image: "https://placehold.co/600x400/1e293b/f59e0b?text=Welding+Kit"
-      },
-      {
-        id: "sample-3",
-        title: "Hydraulic Pump Replacement Assembly",
-        price: "$820",
-        category: "Spare Parts",
-        sellerName: "Zeeba Power Supplies",
-        whatsapp: "15551234567",
-        description: "Brand new OEM replacement hydraulic gear pump compatible with heavy machinery.",
-        image: "https://placehold.co/600x400/1e293b/f59e0b?text=Hydraulic+Pump"
-      }
-    ];
-
-    let allProducts = [];
-
-    // Parse Frontmatter YAML inside Markdown string
-    function parseFrontmatter(text) {
-      const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---/;
-      const match = text.match(frontmatterRegex);
-      const data = {};
-
-      if (match) {
-        const yamlLines = match[1].split('\n');
-        yamlLines.forEach(line => {
-          const colonIdx = line.indexOf(':');
-          if (colonIdx !== -1) {
-            const key = line.slice(0, colonIdx).trim();
-            let val = line.slice(colonIdx + 1).trim();
-            // Remove quotation marks if present
-            val = val.replace(/^["'](.*)["']$/, '$1');
-            if (key) data[key] = val;
-          }
-        });
-      }
-      return data;
-    }
-
-    // Fetch and load products from GitHub API or static directory
-    async function loadProducts() {
-      try {
-        // Attempting to fetch content manifest from GitHub repository endpoint
-        const response = await fetch('https://api.github.com/repos/Sultan782/penn-powertest/contents/content/products');
-        
-        if (response.ok) {
-          const files = await response.json();
-          const mdFiles = files.filter(f => f.name.endsWith('.md'));
-
-          if (mdFiles.length > 0) {
-            const fetchedProducts = await Promise.all(mdFiles.map(async (file) => {
-              const fileRes = await fetch(file.download_url);
-              const text = await fileRes.text();
-              const meta = parseFrontmatter(text);
-              return {
-                id: file.name,
-                title: meta.title || "Untitled Product",
-                price: meta.price ? (meta.price.startsWith('$') ? meta.price : `$${meta.price}`) : "Contact for Price",
-                category: meta.category || "General",
-                sellerName: meta.sellerName || meta.seller || "Penn Power Seller",
-                whatsapp: meta.whatsapp || "15551234567",
-                description: meta.description || "No detailed description provided.",
-                image: meta.image || `https://placehold.co/600x400/1e293b/f59e0b?text=${encodeURIComponent(meta.title || 'Product')}`
-              };
-            }));
-            allProducts = fetchedProducts;
-          } else {
-            allProducts = SAMPLE_PRODUCTS;
-          }
-        } else {
-          allProducts = SAMPLE_PRODUCTS;
-        }
-      } catch (err) {
-        console.warn("Using sample catalog products due to network fetch status:", err);
-        allProducts = SAMPLE_PRODUCTS;
-      }
-
-      renderProducts(allProducts);
-    }
-
-    // Render list of product cards onto DOM
-    function renderProducts(products) {
-      const grid = document.getElementById('productGrid');
-      const emptyState = document.getElementById('emptyState');
-      const countLabel = document.getElementById('productCount');
-
-      countLabel.textContent = products.length;
-
-      if (products.length === 0) {
-        grid.innerHTML = '';
-        emptyState.classList.remove('hidden');
-        return;
-      }
-
-      emptyState.classList.add('hidden');
-      
-      grid.innerHTML = products.map(item => {
-        const cleanPhone = (item.whatsapp || '').replace(/\D/g, '');
-        const whatsappMsg = encodeURIComponent(`Hello, I am interested in purchasing "${item.title}" listed on Penn Power Marketplace.`);
-        const whatsappUrl = `https://wa.me/${cleanPhone}?text=${whatsappMsg}`;
-
-        return `
-          <div class="product-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group">
-            <!-- Product Image -->
-            <div class="relative h-48 bg-slate-100 overflow-hidden">
-              <img 
-                src="${item.image}" 
-                alt="${item.title}" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Penn+Power';"
-              />
-              <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
-                ${item.category}
-              </span>
-            </div>
-
-            <!-- Content Area -->
-            <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-              <div>
-                <div class="flex items-start justify-between gap-2 mb-2">
-                  <h3 class="font-bold text-slate-900 text-base line-clamp-1 group-hover:text-amber-600 transition-colors">
-                    ${item.title}
-                  </h3>
-                  <span class="text-base font-extrabold text-amber-600 whitespace-nowrap">
-                    ${item.price}
-                  </span>
-                </div>
-
-                <p class="text-xs text-slate-500 mb-3 flex items-center gap-1.5">
-                  <i class="fa-solid fa-store text-slate-400"></i>
-                  <span>${item.sellerName}</span>
-                </p>
-
-                <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed">
-                  ${item.description}
-                </p>
-              </div>
-
-              <!-- Action Button -->
-              <a 
-                href="${whatsappUrl}" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="w-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2"
-              >
-                <i class="fa-brands fa-whatsapp text-base"></i>
-                <span>Contact via WhatsApp</span>
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Dynamic Filter Handler
-    function handleFilter() {
-      const query = document.getElementById('searchInput').value.toLowerCase().trim();
-      const selectedCategory = document.getElementById('categorySelect').value;
-
-      const filtered = allProducts.filter(item => {
-        const matchesQuery = item.title.toLowerCase().includes(query) || 
-                             item.sellerName.toLowerCase().includes(query) ||
-                             item.description.toLowerCase().includes(query);
-        
-        const matchesCategory = selectedCategory === 'ALL' || item.category === selectedCategory;
-
-        return matchesQuery && matchesCategory;
-      });
-
-      renderProducts(filtered);
-    }
-
-    // Reset Controls
-    function resetFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('categorySelect').value = 'ALL';
-      renderProducts(allProducts);
-    }
-
-    // Initialize application on window load
-    window.onload = function() {
-      loadProducts();
-    };
-  </script>
+  <div class="container">
+    <h1>Penn Power</h1>
+    <p>Welcome to Penn Power.</p>
+    <a href="/adminzeeba/" class="admin-btn">Access Admin Dashboard</a>
+  </div>
 
 </body>
 </html>
